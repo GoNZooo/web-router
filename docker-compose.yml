@@ -10,3 +10,7 @@ githubpage:
     build: "/home/gonz/code/racket/github-page"
     ports:
         - "8080:8080"
+moviestarpage:
+    build: "/home/gonz/code/racket/movie-star"
+    ports:
+        - "8082:8082"
