@@ -1,4 +1,4 @@
 FROM nginx
-MAINTAINER gonz@severnatazvezda.com
+MAINTAINER Rickard Andersson <gonz@severnatazvezda.com>
 
 COPY nginx.conf /etc/nginx/nginx.conf
