@@ -1,0 +1,12 @@
+web:
+    build: "/home/gonz/code/docker/gonz/web-router"
+    ports:
+        - "80:80"
+    links:
+        - githubpage
+    volumes:
+        - ~/code/racket/github-page/src/static:/github/static
+githubpage:
+    build: "/home/gonz/code/racket/github-page"
+    ports:
+        - "8080:8080"
