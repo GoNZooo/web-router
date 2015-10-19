@@ -1,11 +1,3 @@
-web:
-    build: "/home/gonz/code/docker/gonz/web-router"
-    ports:
-        - "80:80"
-    links:
-        - githubpage
-    volumes:
-        - ~/code/racket/github-page/src/static:/github/static
 githubpage:
     build: "/home/gonz/code/racket/github-page"
     ports:
@@ -14,3 +6,12 @@ moviestarpage:
     build: "/home/gonz/code/racket/movie-star"
     ports:
         - "8082:8082"
+web:
+    build: "/home/gonz/code/docker/gonz/web-router"
+    ports:
+        - "80:80"
+    links:
+        - githubpage
+        - moviestarpage
+    volumes:
+        - ~/code/racket/github-page/src/static:/github/static
