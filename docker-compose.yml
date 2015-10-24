@@ -16,4 +16,5 @@ web:
         - githubpage
         - moviestarpage
     volumes:
-        - ~/code/racket/github-page/src/static:/github/static
+        - "~/code/racket/github-page/src/static:/github/static/"
+        - "~/code/racket/movie-star/posters:/movie-star/posters/"
