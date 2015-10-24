@@ -8,6 +8,7 @@ moviestarpage:
         - "8082:8082"
     volumes:
         - "~/code/racket/movie-star/cache:/cache/"
+        - "~/code/racket/movie-star/posters:/movie-star/posters/"
 web:
     build: "/home/gonz/code/docker/gonz/web-router"
     ports:
