@@ -9,6 +9,10 @@ moviestarpage:
     volumes:
         - "~/code/racket/movie-star/cache:/cache/"
         - "~/code/racket/movie-star/posters:/movie-star/posters/"
+wikipage:
+    build: "/home/gonz/code/racket/mediawiki-api"
+    ports:
+        - "8083:8083"
 web:
     build: "/home/gonz/code/docker/gonz/web-router"
     ports:
@@ -16,6 +20,7 @@ web:
     links:
         - githubpage
         - moviestarpage
+        - wikipage
     volumes:
         - "~/code/racket/github-page/src/static:/github/static/"
         - "~/code/racket/movie-star/posters:/movie-star/posters/"
