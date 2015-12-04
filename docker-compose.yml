@@ -1,26 +1,43 @@
+db:
+  image: postgres:9.4
+  volumes:
+    - "~/.secrets:/db_dump"
+  environment:
+    POSTGRES_USER: "postgres"
+    POSTGRES_PASSWORD: "postgres"
 githubpage:
-    build: "/home/gonz/code/racket/github-page"
-    ports:
-        - "8080:8080"
+  build: "/home/gonz/code/racket/github-page"
+  ports:
+    - "8080:8080"
 moviestarpage:
-    build: "/home/gonz/code/racket/movie-star"
-    ports:
-        - "8082:8082"
-    volumes:
-        - "~/code/racket/movie-star/cache:/cache/"
-        - "~/code/racket/movie-star/posters:/movie-star/posters/"
+  build: "/home/gonz/code/racket/movie-star"
+  ports:
+    - "8082:8082"
+  volumes:
+    - "~/code/racket/movie-star/cache:/cache/"
+    - "~/code/racket/movie-star/posters:/movie-star/posters/"
 wikipage:
-    build: "/home/gonz/code/racket/mediawiki-api"
-    ports:
-        - "8083:8083"
+  build: "/home/gonz/code/racket/mediawiki-api"
+  ports:
+    - "8083:8083"
+wedding:
+  build: "/home/gonz/code/elixir/phoenix/wedding_container"
+  ports:
+    - "4001:4001"
+  environment:
+    DB_URL: "ecto://postgres:postgres@db/wedding_prod"
+  links:
+    - db
 web:
-    build: "/home/gonz/code/docker/gonz/web-router"
-    ports:
-        - "80:80"
-    links:
-        - githubpage
-        - moviestarpage
-        - wikipage
-    volumes:
-        - "~/code/racket/github-page/src/static:/github/static/"
-        - "~/code/racket/movie-star/posters:/movie-star/posters/"
+  build: "/home/gonz/code/docker/gonz/web-router"
+  ports:
+    - "80:80"
+    - "443:443"
+  links:
+    - githubpage
+    - moviestarpage
+    - wikipage
+    - wedding
+  volumes:
+    - "~/code/racket/github-page/src/static:/github/static/"
+    - "~/code/racket/movie-star/posters:/movie-star/posters/"
